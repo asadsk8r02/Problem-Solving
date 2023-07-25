@@ -5,7 +5,7 @@ class Solution:
         elif n<=0 or n%4 != 0:
             return False
         else:
-            return self.isPowerOfFour(n/4)
+            return self.isPowerOfFour(n//4)
 
         # if n<=0:
         #     return False
