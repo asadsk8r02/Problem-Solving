@@ -35,12 +35,56 @@
 #             self.quicksort(arr,l,p)
 #             self.quicksort(arr,p+1,r)
 
-class Solution:
-    def kthSmallest(self,arr, l, r, k):   
-        arr.sort()
-        return arr[k-1]
-            
+# class Solution:
+#     def kthSmallest(self,arr, l, r, k):   
+#         arr.sort()
+#         return arr[k-1]
 
+class Solution:
+    # def kthSmallest(self, arr, l, r, k):
+    #     return self.binarysearch(arr, 1, 10000, l, r, k)
+        
+    # def binarysearch(self, arr, low, high, l, r, k):
+    #     count = 0
+    #     possAns = -1
+    #     mid = (low + high) // 2
+    #     for i in range(l, r + 1):  # inclusive range
+    #         if arr[i] <= mid:  # consider elements less than or equal to mid
+    #             count += 1
+    #             if possAns == -1 or arr[i] > possAns:
+    #                 possAns = arr[i]
+        
+    #     if count == k:
+    #         return possAns
+    #     elif count < k:
+    #         return self.binarysearch(arr, mid + 1, high, l, r, k)
+    #     else:
+    #         return self.binarysearch(arr, low, mid - 1, l, r, k)
+    
+    def kthSmallest(self, arr, l, r, k):
+        min_val = min(arr[l:r+1])
+        max_val = max(arr[l:r+1])
+        return self.binarysearch(arr, min_val, max_val, l, r, k)
+        
+    def binarysearch(self, arr, low, high, l, r, k):
+        while low <= high:
+            mid = (low + high) // 2
+            count = 0
+            possAns = -1
+            for i in range(l, r + 1):
+                if arr[i] <= mid:
+                    count += 1
+                    if possAns == -1 or arr[i] > possAns:
+                        possAns = arr[i]
+
+            if count == k:
+                return possAns
+            elif count < k:
+                low = mid + 1
+            else:
+                high = mid - 1
+        
+        return -1 
 
 #{ 
  # Driver Code Starts
