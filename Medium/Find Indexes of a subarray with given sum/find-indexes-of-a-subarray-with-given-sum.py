@@ -9,23 +9,20 @@ class Solution:
                     return [i + 1, i + 1]
             return [-1]
 
-        # Initialize pointers and the current sum
-        left = 0
         curr_sum = 0
+        start = 0
 
-        # Traverse the array with the right pointer
-        for right in range(n):
-            # Add the current element to the current sum
-            curr_sum += arr[right]
+        for end in range(n):
+            curr_sum += arr[end]
 
-            # While current sum is greater than the target sum, subtract elements from the left
-            while curr_sum > s and left <= right:
-                curr_sum -= arr[left]
-                left += 1
+            # While the current sum exceeds the target sum, subtract the starting element
+            while curr_sum > s and start <= end:
+                curr_sum -= arr[start]
+                start += 1
 
-            # If the current sum is equal to the target sum, return the indices
+            # If the current sum equals the target sum, return the 1-based indices
             if curr_sum == s:
-                return [left + 1, right + 1]  # +1 for 1-based indexing
+                return [start + 1, end + 1]
 
         # If no subarray is found, return [-1]
         return [-1]
