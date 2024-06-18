@@ -7,11 +7,7 @@ class Solution:
         first_idx = n-1
         for i in range(n):
             if arr[i] in count_map:
-                if first_idx == 0:
-                    return 1
                 first_idx = min(first_idx,count_map[arr[i]][0])
-                # return count_map[arr[i]][0] + 1
-                # count_map[arr[i]].append(i)
                 pass
             else:
                 count_map[arr[i]] = [i]
@@ -20,8 +16,6 @@ class Solution:
             return -1
         else:
             return first_idx + 1
-        #arr : given array
-        #n : size of the array
 
 
 #{ 
